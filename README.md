@@ -80,7 +80,7 @@ All examples have a coresponding folder.
             public static IDisposable SubscribeToText<T>(this IObservable<T> source, Text text, Func<T, string> selector);
         } 
     ```
-    * Any `UnityEvent` can be wrapped in `Observable` with these extensions methods:
+    * Any `UnityEvent` can be wrapped in `Observable` with these extensions methods: 
     ```C#
     public static class UnityEventExtensions
     {
@@ -95,12 +95,10 @@ All examples have a coresponding folder.
 
 1. Demonstrates how to create a double-click stream in 5 lines of code.
 
-1. Making http call (demonstrate multiple calls wait them all together)
-    * Demonstrate multiple streams waited together
-    * Demonstrate marshalling between threads
+1. Demonstrates making multiple http calls simultaniously.
 
-1. Keep state at one place! ReactiveProperties (HP of a hero)
+1. TODO: Keep state at one place! ReactiveProperties (HP of a hero example?)
 
 
 
-TODO: Present: Operators, ReactiveProperty, CompositeDisposable
+TODO: Present: Operators, ReactiveProperty, CompositeDisposable, CoroutinesAsObservables,Framecount-based time operators
