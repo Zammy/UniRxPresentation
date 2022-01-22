@@ -28,17 +28,18 @@ public class ViewPresenter : MonoBehaviour, IViewPresenter
 
     public IObservable<string> OnInputFieldChanged()
     {
-        return InputField.onEndEdit.AsObservable<string>();
+        return InputField.OnEndEditAsObservable();
     }
 
     public IObservable<bool> OnToggleChanged()
     {
-        return Toggle.onValueChanged.AsObservable<bool>();
+        return Toggle.OnValueChangedAsObservable();
     }
 
     public IObservable<int> OnDropdownChanged()
     {
-        return Dropdown.onValueChanged.AsObservable<int>();
+        return Dropdown.OnValueChangedAsObservable();
+        // return Dropdown.onValueChanged.AsObservable<int>();
     }
 }
 

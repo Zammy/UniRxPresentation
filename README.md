@@ -62,8 +62,9 @@ All examples have a coresponding folder.
     * Demonstrate `OnComplete` and `OnError`
     * Demonstrate `Unit` 
 1. Demonstrates UniRx UI extensions
-    * ```C#
-            public static class UnityUIComponentExtensions
+    * With the help of UniRx extensions methods any UI event can be wrapped in `Observable`. 
+    ```C#
+        public static class UnityUIComponentExtensions
         {
             public static IObservable<Unit> OnClickAsObservable(this Button button);
             public static IObservable<string> OnEndEditAsObservable(this InputField inputField);
@@ -77,8 +78,21 @@ All examples have a coresponding folder.
             public static IDisposable SubscribeToText(this IObservable<string> source, Text text);
             public static IDisposable SubscribeToText<T>(this IObservable<T> source, Text text);
             public static IDisposable SubscribeToText<T>(this IObservable<T> source, Text text, Func<T, string> selector);
-        }
+        } 
     ```
+    * Any `UnityEvent` can be wrapped in `Observable` with these extensions methods:
+    ```C#
+    public static class UnityEventExtensions
+    {
+        public static IObservable<Unit> AsObservable(this UnityEvent unityEvent);
+        public static IObservable<T> AsObservable<T>(this UnityEvent<T> unityEvent);
+        public static IObservable<Tuple<T0, T1>> AsObservable<T0, T1>(this UnityEvent<T0, T1> unityEvent);
+        public static IObservable<Tuple<T0, T1, T2>> AsObservable<T0, T1, T2>(this UnityEvent<T0, T1, T2> unityEvent);
+        public static IObservable<Tuple<T0, T1, T2, T3>> AsObservable<T0, T1, T2, T3>(this UnityEvent<T0, T1, T2, T3> unityEvent);
+    }
+    ```
+    * Show real world example of Model-ViewPresenter-Controller pattern
+    
 1. A stream counting double clicks on a button
 
 
