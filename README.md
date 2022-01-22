@@ -56,12 +56,31 @@ You will notice that an `Observable` needs an `Observer` to subscribe to. UniRx 
 
 ## Examples
 
-1. A stream when a button is clicked (the hard way)
+All examples have a coresponding folder.
+
+1. Demonstartes how to make a stream when a button is clicked (the hard way)
     * Demonstrate `OnComplete` and `OnError`
-1. Using UniRx UI extensions to handle click
-1. A stream counting clicks on a button
+    * Demonstrate `Unit` 
+1. Demonstrates UniRx UI extensions
+    * ```C#
+            public static class UnityUIComponentExtensions
+        {
+            public static IObservable<Unit> OnClickAsObservable(this Button button);
+            public static IObservable<string> OnEndEditAsObservable(this InputField inputField);
+            public static IObservable<bool> OnValueChangedAsObservable(this Toggle toggle);
+            public static IObservable<float> OnValueChangedAsObservable(this Scrollbar scrollbar);
+            public static IObservable<Vector2> OnValueChangedAsObservable(this ScrollRect scrollRect);
+            public static IObservable<float> OnValueChangedAsObservable(this Slider slider);
+            public static IObservable<string> OnValueChangedAsObservable(this InputField inputField);
+            public static IObservable<int> OnValueChangedAsObservable(this Dropdown dropdown);
+            public static IDisposable SubscribeToInteractable(this IObservable<bool> source, Selectable selectable);
+            public static IDisposable SubscribeToText(this IObservable<string> source, Text text);
+            public static IDisposable SubscribeToText<T>(this IObservable<T> source, Text text);
+            public static IDisposable SubscribeToText<T>(this IObservable<T> source, Text text, Func<T, string> selector);
+        }
+    ```
 1. A stream counting double clicks on a button
 
 
 
-TODO: Present: Operators, ReactiveProperty
+TODO: Present: Operators, ReactiveProperty, CompositeDisposable
