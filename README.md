@@ -91,9 +91,15 @@ All examples have a coresponding folder.
         public static IObservable<Tuple<T0, T1, T2, T3>> AsObservable<T0, T1, T2, T3>(this UnityEvent<T0, T1, T2, T3> unityEvent);
     }
     ```
-    * Show real world example of Model-ViewPresenter-Controller pattern
-    
-1. A stream counting double clicks on a button
+    * Show real world example of Model-ViewPresenter-Controller pattern (SettingsWidget is a good example)
+
+1. Demonstrates how to create a double-click stream in 5 lines of code.
+
+1. Making http call (demonstrate multiple calls wait them all together)
+    * Demonstrate multiple streams waited together
+    * Demonstrate marshalling between threads
+
+1. Keep state at one place! ReactiveProperties (HP of a hero)
 
 
 
