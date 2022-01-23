@@ -46,7 +46,7 @@ public class Main5 : MonoBehaviour
             .AddTo(this);
 
         StateManager.GetState()
-            .PlayerPositiong
+            .PlayerPosition
             .Subscribe(playerPos => Debug.LogFormat("Player position: {0}", playerPos))
             .AddTo(this);
     }

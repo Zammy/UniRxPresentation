@@ -5,13 +5,6 @@ using System.IO;
 using UniRx;
 using UnityEngine;
 
-public interface IPlayerState
-{
-    ReactiveProperty<int> PlayerHealth { get; }
-    ReactiveProperty<Vector2> PlayerPositiong { get; }
-}
-
-
 public class StateManager : Singleton<StateManager>
 {
     public static State GetState()
@@ -19,24 +12,22 @@ public class StateManager : Singleton<StateManager>
         return StateManager.Instance._state;
     }
 
-    //contains the whole game state
     [System.Serializable]
     public class SerializableState
     {
         public int PlayerHealth;
-        public Vector2 PlayerPositiong;
+        public Vector2 PlayerPosition;
     }
 
-
-    public class State : IPlayerState
+    public class State
     {
         public ReactiveProperty<int> PlayerHealth { get; private set; }
-        public ReactiveProperty<Vector2> PlayerPositiong { get; private set; }
+        public ReactiveProperty<Vector2> PlayerPosition { get; private set; }
 
         public State()
         {
             PlayerHealth = new ReactiveProperty<int>();
-            PlayerPositiong = new ReactiveProperty<Vector2>();
+            PlayerPosition = new ReactiveProperty<Vector2>();
         }
 
         public void LoadState(SerializableState rawState)
@@ -54,7 +45,7 @@ public class StateManager : Singleton<StateManager>
             }
         }
 
-        public string SerializeState()
+        public SerializableState SerializeState()
         {
             var serializableState = new SerializableState();
             foreach (var field in typeof(SerializableState).GetFields())
@@ -65,7 +56,7 @@ public class StateManager : Singleton<StateManager>
                 field.SetValue(serializableState, valueProp.GetValue(reactiveObj));
             }
 
-            return JsonUtility.ToJson(serializableState);
+            return serializableState;
         }
     }
 
@@ -76,22 +67,22 @@ public class StateManager : Singleton<StateManager>
 
     public IObservable<Unit> LoadState()
     {
-        return Observable.Start(() => File.ReadAllText(SAVE_FILE_PATH, System.Text.Encoding.UTF8))
-            .Select(data => JsonUtility.FromJson<SerializableState>(data))
-            .ObserveOnMainThread()
-            .Select(serializableState =>
+        return Observable
+            .Start(() =>
             {
+                var data = File.ReadAllText(SAVE_FILE_PATH, System.Text.Encoding.UTF8);
+                var serializableState = JsonUtility.FromJson<SerializableState>(data);
                 _state.LoadState(serializableState);
                 return Unit.Default;
             });
-
     }
 
     public IObservable<Unit> SaveState()
     {
-        var stateStr = _state.SerializeState();
+        var state = _state.SerializeState();
         return Observable.Start(() =>
         {
+            var stateStr = JsonUtility.ToJson(state);
             File.WriteAllText(SAVE_FILE_PATH, stateStr, System.Text.Encoding.UTF8);
             return Unit.Default;
         });
