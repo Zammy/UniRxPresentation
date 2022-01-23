@@ -23,6 +23,7 @@ public class Main4 : MonoBehaviour
 
     void Start()
     {
+        // var throttledClick = Observable.ThrottleFirst(RequestButton.OnClickAsObservable(), TimeSpan.FromSeconds(1));
         RequestButton.OnClickAsObservable()
             .Subscribe(_ =>
             {
