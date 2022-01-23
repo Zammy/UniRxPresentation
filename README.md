@@ -78,7 +78,7 @@ All examples have a coresponding folder.
             public static IDisposable SubscribeToText(this IObservable<string> source, Text text);
             public static IDisposable SubscribeToText<T>(this IObservable<T> source, Text text);
             public static IDisposable SubscribeToText<T>(this IObservable<T> source, Text text, Func<T, string> selector);
-        } 
+        }
     ```
     * Any `UnityEvent` can be wrapped in `Observable` with these extensions methods: 
     ```C#
@@ -102,3 +102,7 @@ All examples have a coresponding folder.
 
 
 TODO: Present: Operators, ReactiveProperty, CompositeDisposable, CoroutinesAsObservables,Framecount-based time operators
+
+## Great resources:
+* https://github.com/neuecc/UniRx - UniRx website. A lot of goodies in the readme. Best place to start with UniRx.
+* https://reactivex.io/ - The best place to learn more about reactive language agnostic. Great documentation with visual help.
