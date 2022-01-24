@@ -1,6 +1,4 @@
 using System;
-using System.Collections;
-using System.Collections.Generic;
 using System.IO;
 using UniRx;
 using UnityEngine;
@@ -67,14 +65,19 @@ public class StateManager : Singleton<StateManager>
 
     public IObservable<Unit> LoadState()
     {
-        return Observable
-            .Start(() =>
-            {
-                var data = File.ReadAllText(SAVE_FILE_PATH, System.Text.Encoding.UTF8);
-                var serializableState = JsonUtility.FromJson<SerializableState>(data);
-                _state.LoadState(serializableState);
-                return Unit.Default;
-            });
+        var subject = new Subject<Unit>();
+        Observable.Start(() =>
+        {
+            var data = File.ReadAllText(SAVE_FILE_PATH, System.Text.Encoding.UTF8);
+            return JsonUtility.FromJson<SerializableState>(data);
+        })
+        .ObserveOnMainThread()
+        .Subscribe(serializableState =>
+        {
+            _state.LoadState(serializableState);
+            subject.OnNext(Unit.Default);
+        }, ex => subject.OnError(ex));
+        return subject;
     }
 
     public IObservable<Unit> SaveState()
@@ -85,7 +88,7 @@ public class StateManager : Singleton<StateManager>
             var stateStr = JsonUtility.ToJson(state);
             File.WriteAllText(SAVE_FILE_PATH, stateStr, System.Text.Encoding.UTF8);
             return Unit.Default;
-        });
+        }).ObserveOnMainThread();
     }
 
     State _state;

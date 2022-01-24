@@ -31,9 +31,8 @@ public class TopDownMove : MonoBehaviour
         }
         direction.Normalize();
 
-        // transform.localPosition = (Vector2)transform.localPosition + (direction * Speed * Time.deltaTime);
-        StateManager.GetState()
-            .PlayerPosition.Value = (Vector2)transform.localPosition + (direction * Speed * Time.deltaTime);
+        var propPos = StateManager.GetState().PlayerPosition;
+        propPos.Value = propPos.Value + (direction * Speed * Time.deltaTime);
     }
 
     static readonly Dictionary<KeyCode, Vector2> _buttonToDirection;

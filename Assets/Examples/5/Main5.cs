@@ -1,8 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using UniRx;
+using UniRx.Triggers;
 
 public class Main5 : MonoBehaviour
 {
@@ -12,8 +11,26 @@ public class Main5 : MonoBehaviour
     [SerializeField]
     Button SaveButton;
 
+    [SerializeField]
+    Text PlayerHP;
+
+    [SerializeField]
+    GameObject Apple;
+
+    [SerializeField]
+    GameObject EndGameDialog;
+
+    [SerializeField]
+    GameObject WinText;
+
+    [SerializeField]
+    GameObject LoseText;
+
     void Start()
     {
+        StateManager.GetState()
+            .PlayerHealth.Value = 20;
+
         LoadButton.OnClickAsObservable()
             .Subscribe(_ =>
             {
@@ -21,34 +38,47 @@ public class Main5 : MonoBehaviour
                     .SubscribeOnMainThread()
                     .Subscribe(_ =>
                     {
+                        GetComponent<TopDownMove>().enabled = true;
+                        EndGameDialog.SetActive(false);
+                        WinText.SetActive(false);
+                        LoseText.SetActive(false);
+
                         Debug.Log("Loaded state");
-                    })
-                    .AddTo(this);
-            })
-            .AddTo(this);
+                    });
+            }, ex => Debug.LogError(ex));
 
         SaveButton.OnClickAsObservable()
             .Subscribe(_ =>
             {
                 StateManager.Instance.SaveState()
-                    .SubscribeOnMainThread()
                     .Subscribe(_ =>
                     {
                         Debug.Log("Saved state");
-                    })
-                    .AddTo(this);
-            })
-            .AddTo(this);
+                    });
+            });
+
+        var winCondition = Apple.AddComponent<ObservableTrigger2DTrigger>()
+            .OnTriggerEnter2DAsObservable()
+            .Where(other => other.gameObject.tag == "Player")
+            .Select(_ => true);
+        var loseCondition = StateManager.GetState().PlayerHealth
+            .Where(health => health <= 0)
+            .Select(_ => false);
+
+        var endGame = Observable.Merge(winCondition, loseCondition);
+        endGame.Subscribe(win =>
+        {
+            EndGameDialog.SetActive(true);
+            WinText.SetActive(win);
+            LoseText.SetActive(!win);
+            GetComponent<TopDownMove>().enabled = false;
+        });
 
         StateManager.GetState()
             .PlayerHealth
-            .Subscribe(playerHealth => Debug.LogFormat("Player health: {0}", playerHealth))
-            .AddTo(this);
-
-        StateManager.GetState()
-            .PlayerPosition
-            .Subscribe(playerPos => Debug.LogFormat("Player position: {0}", playerPos))
-            .AddTo(this);
+            // .Where(health => health >= 0)
+            // .TakeUntil(endGame)
+            .Subscribe(playerHealth => PlayerHP.text = playerHealth.ToString());
     }
 
 }
