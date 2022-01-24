@@ -95,13 +95,11 @@ All examples have a coresponding folder.
 
 1. Demonstrates how to create a double-click stream in 5 lines of code.
 
-1. Demonstrates making multiple http calls simultaniously.
+1. Demonstrates making multiple http calls simultaniously and synchronizing them.
 
-1. TODO: Keep state at one place! ReactiveProperties (HP of a hero example?)
+1. Demonstrates keeping state at one place that facilitates game state serailization.
 
-
-
-TODO: Present: Operators, ReactiveProperty, CompositeDisposable, CoroutinesAsObservables,Framecount-based time operators
+TODO: Present: AddTo(lifecycle of events) , CompositeDisposable, CoroutinesAsObservables, Framecount-based time operators
 
 ## Great resources:
 * https://github.com/neuecc/UniRx - UniRx website. A lot of goodies in the readme. Best place to start with UniRx.
