@@ -17,7 +17,6 @@ public class Main3 : MonoBehaviour
             .Buffer(TimeSpan.FromMilliseconds(500))
             .Select(clicks => clicks.Count)
             .Where(clicks => clicks >= 2)
-            .Subscribe(_ => Debug.Log("Double click!"))
-            .AddTo(gameObject);
+            .Subscribe(_ => Debug.Log("Double click!"));
     }
 }

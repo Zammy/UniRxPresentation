@@ -20,8 +20,7 @@ public class Main1 : MonoBehaviour
                 .Subscribe(
                     _ => Debug.Log("Button: Click!"),
                     () => Debug.Log("Button destroyed. Completed.")
-                )
-                .AddTo(gameObject);
+                );
         }
 
         if (ClickEventWithError.gameObject.activeSelf)
@@ -32,8 +31,7 @@ public class Main1 : MonoBehaviour
                     _ => Debug.Log("ButtonWithErr: Click!"),
                     ex => Debug.LogError(ex),
                     () => Debug.Log("Button with error destroyed. Completed.")
-                )
-                .AddTo(gameObject);
+                );
         }
     }
 }

@@ -14,19 +14,15 @@ public class Main2 : MonoBehaviour
         var viewPresenter = ViewPresenter.GetComponent<IViewPresenter>();
 
         viewPresenter.OnClick()
-            .Subscribe(_ => Debug.Log("Button clicked"))
-            .AddTo(gameObject);
+            .Subscribe(_ => Debug.Log("Button clicked"));
 
         viewPresenter.OnInputFieldChanged()
-            .Subscribe(text => Debug.LogFormat("InputField changed: {0}", text))
-            .AddTo(gameObject);
+            .Subscribe(text => Debug.LogFormat("InputField changed: {0}", text));
 
         viewPresenter.OnToggleChanged()
-            .Subscribe(isOn => Debug.LogFormat("Toggle changed: {0}", isOn))
-            .AddTo(gameObject);
+            .Subscribe(isOn => Debug.LogFormat("Toggle changed: {0}", isOn));
 
         viewPresenter.OnDropdownChanged()
-            .Subscribe(newValue => Debug.LogFormat("Dropdown changed:{0}", newValue))
-            .AddTo(gameObject);
+            .Subscribe(newValue => Debug.LogFormat("Dropdown changed:{0}", newValue));
     }
 }

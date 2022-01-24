@@ -37,10 +37,8 @@ public class Main4 : MonoBehaviour
                         {
                             Images[i].SetImageData(textures[i]);
                         }
-                    })
-                    .AddTo(this);
-            })
-            .AddTo(this);
+                    });
+            });
 
         RandomizeButton.OnClickAsObservable()
             .Subscribe(_ =>
@@ -49,7 +47,6 @@ public class Main4 : MonoBehaviour
                 {
                     dropdown.GetComponent<LoadDoggosToDropDown>().Randomize();
                 }
-            })
-            .AddTo(this);
+            });
     }
 }
