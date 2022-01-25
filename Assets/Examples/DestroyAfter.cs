@@ -15,6 +15,7 @@ public class DestroyAfter : MonoBehaviour
 
     IEnumerator DoDieAfter()
     {
+        //TODO: use Destroy() without enumeration
         yield return new WaitForSeconds(Delay);
         Destroy(gameObject);
     }

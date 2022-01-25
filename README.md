@@ -41,28 +41,15 @@ You will notice that an `Observable` needs an `Observer` to subscribe to. UniRx 
         public static IDisposable Subscribe<T>(this IObservable<T> source, Action<T> onNext, Action<Exception> onError, Action onCompleted);
 ```
 
-`Subject`, readable/writable data stream. Subject is both observer and observable. Useful when you want to create your own data streams. UniRx gives you a lot of event wrappers out of the box but sometimes we want to create our own.
-
-```C#
-    public interface ISubject<TSource, TResult> : IObserver<TSource>, IObservable<TResult>
-    {
-    }
-
-    public interface ISubject<T> : ISubject<T, T>, IObserver<T>, IObservable<T>
-    {
-    }
-```
-
-
-## Examples
+## Agenda
 
 All examples have a coresponding folder.
 
-1. Demonstartes how to make a stream when a button is clicked (the hard way)
-    * Demonstrate `OnComplete` and `OnError`
-    * Demonstrate `Unit` 
-1. Demonstrates UniRx UI extensions
-    * With the help of UniRx extensions methods any UI event can be wrapped in `Observable`. 
+1. (**Demo**)
+    * Handle button click
+    * Make a double click on button
+    * Make a counter using only streams
+1. With the help of UniRx extensions methods any UI event can be wrapped in `Observable`. 
     ```C#
         public static class UnityUIComponentExtensions
         {
@@ -80,26 +67,24 @@ All examples have a coresponding folder.
             public static IDisposable SubscribeToText<T>(this IObservable<T> source, Text text, Func<T, string> selector);
         }
     ```
-    * Any `UnityEvent` can be wrapped in `Observable` with these extensions methods: 
-    ```C#
-    public static class UnityEventExtensions
+
+1. (**Example1**) Demonstrates making multiple http calls simultaniously and synchronizing them.
+
+1. (**Example2**) Demonstrates keeping state at one place that facilitates game state serailization.
+
+1. `Subject`, readable/writable data stream. Subject is both observer and observable. Useful when you want to create your own data streams. UniRx gives you a lot of event wrappers out of the box but sometimes we want to create our own.
+
+```C#
+    public interface ISubject<TSource, TResult> : IObserver<TSource>, IObservable<TResult>
     {
-        public static IObservable<Unit> AsObservable(this UnityEvent unityEvent);
-        public static IObservable<T> AsObservable<T>(this UnityEvent<T> unityEvent);
-        public static IObservable<Tuple<T0, T1>> AsObservable<T0, T1>(this UnityEvent<T0, T1> unityEvent);
-        public static IObservable<Tuple<T0, T1, T2>> AsObservable<T0, T1, T2>(this UnityEvent<T0, T1, T2> unityEvent);
-        public static IObservable<Tuple<T0, T1, T2, T3>> AsObservable<T0, T1, T2, T3>(this UnityEvent<T0, T1, T2, T3> unityEvent);
     }
-    ```
-    * Show real world example of Model-ViewPresenter-Controller pattern (SettingsWidget is a good example)
 
-1. Demonstrates how to create a double-click stream in 5 lines of code.
+    public interface ISubject<T> : ISubject<T, T>, IObserver<T>, IObservable<T>
+    {
+    }
+```
 
-1. Demonstrates making multiple http calls simultaniously and synchronizing them.
-
-1. Demonstrates keeping state at one place that facilitates game state serailization.
-
-TODO: Present: AddTo(lifecycle of events) , CompositeDisposable, CoroutinesAsObservables, Framecount-based time operators
+TODO: Present: AddTo(lifecycle of events) , Framecount-based time operators
 
 ## Great resources:
 * https://github.com/neuecc/UniRx - UniRx website. A lot of goodies in the readme. Best place to start with UniRx.

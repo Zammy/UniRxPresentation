@@ -174,10 +174,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 122245988}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5df1fc7a2d48524fbb0a693b18ddac5, type: 3}
+  m_Script: {fileID: 11500000, guid: 732c238b7a552f5409a47f7ca8b5b982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RandomDoggoPLZ: 1
+  RandomDoggoPLZ: 0
 --- !u!114 &122245991
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1115,10 +1115,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 693779932}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5df1fc7a2d48524fbb0a693b18ddac5, type: 3}
+  m_Script: {fileID: 11500000, guid: 732c238b7a552f5409a47f7ca8b5b982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RandomDoggoPLZ: 1
+  RandomDoggoPLZ: 0
 --- !u!114 &693779935
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2245,10 +2245,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 1312591138}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d5df1fc7a2d48524fbb0a693b18ddac5, type: 3}
+  m_Script: {fileID: 11500000, guid: 732c238b7a552f5409a47f7ca8b5b982, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  RandomDoggoPLZ: 1
+  RandomDoggoPLZ: 0
 --- !u!114 &1312591141
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3131,7 +3131,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1584662324}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1195f8eaf6c401d4bbcdfd0414d0f4fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 12318ca51ce884f429c6df77c5e105d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &1590097842
@@ -4100,7 +4100,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2031157750}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1195f8eaf6c401d4bbcdfd0414d0f4fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 12318ca51ce884f429c6df77c5e105d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2137572621
@@ -4185,7 +4185,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 2137572621}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1195f8eaf6c401d4bbcdfd0414d0f4fb, type: 3}
+  m_Script: {fileID: 11500000, guid: 12318ca51ce884f429c6df77c5e105d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &2139371347
