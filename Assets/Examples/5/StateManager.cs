@@ -10,13 +10,6 @@ public class StateManager : Singleton<StateManager>
         return StateManager.Instance._state;
     }
 
-    [System.Serializable]
-    public class SerializableState
-    {
-        public int PlayerHealth;
-        public Vector2 PlayerPosition;
-    }
-
     public class State
     {
         public ReactiveProperty<int> PlayerHealth { get; private set; }
@@ -92,6 +85,14 @@ public class StateManager : Singleton<StateManager>
     }
 
     State _state;
+
+
+    [System.Serializable]
+    public class SerializableState
+    {
+        public int PlayerHealth;
+        public Vector2 PlayerPosition;
+    }
 
     readonly string SAVE_FILE_PATH = new Uri(new Uri(Application.dataPath), "savefile.json").AbsolutePath;
 }
