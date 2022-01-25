@@ -6,7 +6,7 @@ using UniRx;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Main4 : MonoBehaviour
+public class DogMain : MonoBehaviour
 {
     [Header("Set in Unity")]
     [SerializeField]

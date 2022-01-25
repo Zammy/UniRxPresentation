@@ -3,7 +3,7 @@ using UnityEngine.UI;
 using UniRx;
 using UniRx.Triggers;
 
-public class Main5 : MonoBehaviour
+public class TopDownMain : MonoBehaviour
 {
     [Header("Set in Unity")]
     [SerializeField]
