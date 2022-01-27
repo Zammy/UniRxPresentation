@@ -70,21 +70,55 @@ All examples have a coresponding folder.
 
 1. (**Example1**) Demonstrates making multiple http calls simultaniously and synchronizing them.
 
-1. (**Example2**) Demonstrates keeping state at one place that facilitates game state serailization.
+1. (**Example2**) Demonstrates keeping state at one place that facilitates game state serailization and ReactiveProperties.
 
 1. `Subject`, readable/writable data stream. Subject is both observer and observable. Useful when you want to create your own data streams. UniRx gives you a lot of event wrappers out of the box but sometimes we want to create our own.
 
-```C#
-    public interface ISubject<TSource, TResult> : IObserver<TSource>, IObservable<TResult>
-    {
-    }
+    ```C#
+        public interface ISubject<TSource, TResult> : IObserver<TSource>, IObservable<TResult>
+        {
+        }
 
-    public interface ISubject<T> : ISubject<T, T>, IObserver<T>, IObservable<T>
-    {
-    }
-```
+        public interface ISubject<T> : ISubject<T, T>, IObserver<T>, IObservable<T>
+        {
+        }
+    ```
+1. Framecount-based time operators
 
-TODO: Present: AddTo(lifecycle of events) , Framecount-based time operators
+    Method | 
+    -------|
+    EveryUpdate|
+    EveryFixedUpdate|
+    EveryEndOfFrame|
+    EveryGameObjectUpdate|
+    EveryLateUpdate|
+    ObserveOnMainThread|
+    NextFrame|
+    IntervalFrame|
+    TimerFrame|
+    DelayFrame|
+    SampleFrame|
+    ThrottleFrame|
+    ThrottleFirstFrame|
+    TimeoutFrame|
+    DelayFrameSubscription|
+    FrameInterval|
+    FrameTimeInterval|
+    BatchFrame|
+
+1. Subscription to `Observable` should be released if object providing a stream dies. UniRx gives us a lot of extension methods to help us with that.
+
+    ```C#
+    public static class DisposableExtensions
+    {
+        public static T AddTo<T>(this T disposable, ICollection<IDisposable> container) where T : IDisposable;
+        public static T AddTo<T>(this T disposable, GameObject gameObject) where T : IDisposable;
+        public static T AddTo<T>(this T disposable, Component gameObjectComponent) where T : IDisposable;
+        public static T AddTo<T>(this T disposable, ICollection<IDisposable> container, GameObject gameObject) where T : IDisposable;
+        public static T AddTo<T>(this T disposable, ICollection<IDisposable> container, Component gameObjectComponent) where T : IDisposable;
+    }
+    ```
+
 
 ## Great resources:
 * https://github.com/neuecc/UniRx - UniRx website. A lot of goodies in the readme. Best place to start with UniRx.
